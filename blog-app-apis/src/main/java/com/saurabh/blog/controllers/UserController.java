@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.saurabh.blog.payloads.UserDto;
 import com.saurabh.blog.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -25,7 +27,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	@PostMapping("/createuser")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
 		UserDto createUsers=this.userService.createUser(userDto);
 		return new ResponseEntity<UserDto>(createUsers, HttpStatus.CREATED);
 	}
@@ -46,7 +48,7 @@ public class UserController {
 		UserDto user=this.userService.updateUser(userDto, uId);
 		return ResponseEntity.ok(user);
 	}
-	@DeleteMapping("/deleteUser/{uId}")
+	@DeleteMapping("/deleteuser/{uId}")
 	public ResponseEntity<?> deleteUser(@PathVariable Integer uId){
 		this.userService.deleteUser(uId);
 		return ResponseEntity.ok(Map.of("message","User deleted successfully"));
