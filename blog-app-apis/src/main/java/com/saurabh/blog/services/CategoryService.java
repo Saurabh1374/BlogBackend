@@ -2,6 +2,8 @@ package com.saurabh.blog.services;
 
 import java.util.List;
 
+import javax.naming.directory.InvalidAttributesException;
+
 import com.saurabh.blog.payloads.CategoryDto;
 
 public interface CategoryService {

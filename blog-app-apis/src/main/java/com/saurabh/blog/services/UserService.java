@@ -2,6 +2,8 @@ package com.saurabh.blog.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.saurabh.blog.payloads.UserDto;
 
 public interface UserService {
@@ -15,5 +17,7 @@ public interface UserService {
 	List<UserDto> getAllUser();
 
 	void deleteUser(Integer userid);
+	
+	Page<UserDto> getAllUser( int page, int offset);
 
 }
