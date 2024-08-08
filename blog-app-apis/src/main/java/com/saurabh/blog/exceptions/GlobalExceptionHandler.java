@@ -3,11 +3,11 @@ package com.saurabh.blog.exceptions;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.naming.directory.InvalidAttributesException;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindException;
+
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
