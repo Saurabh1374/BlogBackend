@@ -3,8 +3,11 @@ package com.saurabh.blog.exceptions;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,4 +33,12 @@ public class GlobalExceptionHandler {
 		});
 		return new ResponseEntity <Map<String, String>>(resp,HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Map<String, String>> handleInvalidAttributesException(IllegalArgumentException ex ){
+		Map<String, String> resp=new HashMap<>();
+		String message =ex.getMessage();
+		String cause=ex.toString();
+		resp.put(message, cause);
+		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.BAD_REQUEST);
+		} 
 }

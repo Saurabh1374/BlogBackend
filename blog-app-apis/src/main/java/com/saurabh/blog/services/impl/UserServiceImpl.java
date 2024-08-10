@@ -1,10 +1,15 @@
 package com.saurabh.blog.services.impl;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.saurabh.blog.entities.User;
@@ -85,6 +90,30 @@ public class UserServiceImpl implements UserService {
 //		userDto.setEmail(user.getEmail());
 //		userDto.setPassword(user.getPassword());
 		return userDto;
+	}
+
+	@Override
+	public Page<UserDto> getAllUser( int page,int offset) {
+		// TODO Auto-generated method stub
+		Pageable pageRequest = PageRequest.of(page, offset);
+		Page<User> userList=userRepo.findAll(pageRequest);
+//		int start = (int) pageRequest.getOffset();
+//	    int end = Math.min((start + pageRequest.getPageSize()), userList.size());
+	    //List<UserDto> usersDto = userList.stream().map(user -> this.userToDto(user)).collect(Collectors.toList());
+	    /*
+	     * The Page interface has a map method that is 
+	     * specifically designed to convert the content 
+	     * of a Page from one type to another.*/
+		Page<UserDto> users=userList.map(this::userToDto);
+	    //List<UserDto> pageContent = users.subList(start, end);
+	    return users;
+	    /*
+	     * new PageImpl<>(userDtos, pageRequest, usersPage.getTotalElements()) creates
+	     *  a new Page<UserDto> with the converted content and pagination information.*/
+	    //return new PageImpl<>(usersDto, pageRequest, userList.getTotalElements());
+	}
+	private Pageable createPageRequestUsing(int page, int size) {
+	    return PageRequest.of(page, size);
 	}
 
 }
