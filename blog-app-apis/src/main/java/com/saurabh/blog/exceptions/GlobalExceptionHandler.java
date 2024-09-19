@@ -41,4 +41,8 @@ public class GlobalExceptionHandler {
 		resp.put(message, cause);
 		return new ResponseEntity<Map<String,String>>(resp, HttpStatus.BAD_REQUEST);
 		} 
+	public ResponseEntity<?> handleGenericException(Exception ex){
+		System.out.println("Exception occured"+ ex);
+		return new ResponseEntity<>(new ApiResponse(ex.getMessage(), false),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
