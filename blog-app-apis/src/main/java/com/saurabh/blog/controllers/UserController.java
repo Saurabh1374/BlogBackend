@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.saurabh.blog.payloads.UserDto;
 import com.saurabh.blog.services.UserService;
+import com.saurabh.blog.services.impl.TestProperties;
 
 import jakarta.validation.Valid;
 

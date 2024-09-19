@@ -13,12 +13,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="post")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Post {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,5 +37,5 @@ public class Post {
 	@JoinColumn(name= "categoryId")
 	private Category category;
 	@ManyToOne
-	private User users;
+	private User user;
 }

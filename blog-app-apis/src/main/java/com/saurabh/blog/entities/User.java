@@ -13,11 +13,13 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name="Users")
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,7 +29,7 @@ public class User {
 	private String email;
 	private String password;
 	private String about;
-	@OneToMany(mappedBy="users" ,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user" ,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<Post> posts;
 
 }
