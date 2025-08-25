@@ -1,5 +1,8 @@
 package com.saurabh.blog.payloads;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,7 +24,8 @@ public class UserDto {
 	@Email(message="enter a valid email")
 	private String email;
 	@NotBlank(message="enter a valid password")
-	private String password;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private transient String password;
 	@NotNull(message="about can not be blank")
 	private String about;
 }

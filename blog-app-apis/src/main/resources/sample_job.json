@@ -1,0 +1,9 @@
+{	
+	"jobType":"Desk job",
+	"title": "Software engineer",
+	"person":{
+		"name": "saurabh sameer",
+		"age": "25",
+		"religion": "hindu"
+	}
+}
